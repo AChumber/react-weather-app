@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
+import { debounce } from 'lodash';
+import { CurrentLocation } from './CurrentLocation';
 
 const StyledDiv = styled.div`
-    width: 75%;
+    width: clamp(80%, 80%, 75%);
     position: absolute;
     left: 50%;
     top: 50%;
@@ -24,17 +26,32 @@ const StyledInput = styled.input`
     padding: 1.5rem 0.5rem;
     border: none;
     font-size: 1.75rem;
+    margin-bottom: 0.75rem;
 `;
 
 
 export const Search = () => {
-    const [search, setSearch] = useState<String>("");
+    const [search, setSearch] = useState<string>("");
+
+    const debounceSuggestions = useCallback(debounce(async (searchTerm:string) => {
+            if(searchTerm !== '') {
+                console.log(searchTerm);
+            }
+        }, 400), []);
+
+    const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        let searchTerm:string = e.target.value;
+        setSearch(searchTerm);
+
+        debounceSuggestions(searchTerm);
+    };
 
     return (
         <StyledDiv>
             <InputWrapper>
                 <StyledH2>Search for a Location</StyledH2>
-                <StyledInput type='text' onChange={ (e) => setSearch(e.target.value) } />
+                <StyledInput type='text' onChange={ (e) => handleInputChange(e) } value={ search } />
+                <CurrentLocation />
             </InputWrapper>
         </StyledDiv>
     );
