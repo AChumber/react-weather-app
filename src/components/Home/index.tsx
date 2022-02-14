@@ -9,7 +9,7 @@ const StyledImg = styled.img`
     object-fit: cover;
 `;
 
-export const HomePage = () => {
+export const HomePage: React.FC = () => {
     return(
         <div>
             <StyledImg src={ BGImage } />

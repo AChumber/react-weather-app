@@ -1,11 +1,21 @@
 import React from 'react';
-import { HomePage } from './components/Home';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HomePage } from './components/home';
+import { WeatherPage } from './components/weather';
 
 function App() {
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+            <Route path='/'>
+              <Route index element={ <HomePage /> } />
+              <Route path='weather' element={ <WeatherPage /> } />
+            </Route>
+
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

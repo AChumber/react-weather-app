@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+
 import { BiCurrentLocation } from 'react-icons/bi';
 import { SecondaryButton } from '../shared/SecondaryButton';
 
-export const CurrentLocation = () => {
+export const CurrentLocation: React.FC = () => {
     const [isGeolocation, setIsGeolocation] = useState<boolean>(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(!navigator.geolocation) {
@@ -17,6 +20,7 @@ export const CurrentLocation = () => {
             navigator.geolocation.getCurrentPosition(position => {
                 let { latitude:lat, longitude:long } = position.coords;
                 console.log(lat, long);
+                navigate('/weather', { state: { lat, long } });
             })
         }
     }
