@@ -10,11 +10,12 @@ interface Props {
 }
 
 const StyledInfoContainer = styled.div`
-    background: rgba(237, 242, 244, 0.75);
+    background: rgba(237, 242, 244, 0.70);
     padding: 1rem;
     width: 10rem;
     min-height: 8rem;
     position: relative;
+    text-align: center;
 `;
 const StyledInfoCardFont = styled.p`
     font-size: 48px;
@@ -24,6 +25,9 @@ const StyledInfoCardFont = styled.p`
 const StyledInfoCardTitle = styled.div`
     position: absolute;
     bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
 `;
 
 export const InfoCard: React.FC<Props> = ({ info, infoType, title }) => {
@@ -45,7 +49,12 @@ export const InfoCard: React.FC<Props> = ({ info, infoType, title }) => {
                 )
             }
             <StyledInfoCardTitle>
-                <StyledBody>{ title }</StyledBody>
+                <StyledBody>{ 
+                    title.toLowerCase()
+                        .split(' ')
+                        .map(word => word.charAt(0).toUpperCase() + word.substring(1))
+                        .join(' ') }
+                </StyledBody>
             </StyledInfoCardTitle>
         </StyledInfoContainer>
     )

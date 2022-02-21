@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StyledH1 } from '../../shared/FontStyles';
 import CurrentWeather from './CurrentWeather';
+import { WeatherAlert } from './WeatherAlert';
 
 interface Props {
     weatherData: any
@@ -23,6 +24,7 @@ export const WeatherCard: React.FC<Props> = ({weatherData}) => {
         <StyledContainer>
             <StyledH1>Weather - <span>Your Location</span></StyledH1>
             <CurrentWeather currentWeather={ weatherData.current } />
+            <WeatherAlert alerts={ weatherData.alerts } />
             { console.log(weatherData) }
         </StyledContainer>
     );

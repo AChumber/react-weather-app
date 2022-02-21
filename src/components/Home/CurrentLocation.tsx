@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 
 import { BiCurrentLocation } from 'react-icons/bi';
-import { SecondaryButton } from '../shared/SecondaryButton';
+import { SecondaryButton } from '../shared/Buttons';
 
 export const CurrentLocation: React.FC = () => {
     const [isGeolocation, setIsGeolocation] = useState<boolean>(true);

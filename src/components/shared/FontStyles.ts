@@ -18,6 +18,8 @@ export const StyledH3 = styled.h3`
     font-weight: normal;
 `;
 
+
+
 export const StyledBodyBold = styled.p`
     font-size: 18px;
     color: #333;
