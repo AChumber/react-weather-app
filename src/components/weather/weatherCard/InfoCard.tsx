@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { uppercaseWordsInString } from '../../../helpers/StringConversion';
 import { StyledBody } from '../../shared/FontStyles';
 
 type propInfoType = 'image' | 'degree' | 'percent';
@@ -12,7 +13,7 @@ interface Props {
 const StyledInfoContainer = styled.div`
     background: rgba(237, 242, 244, 0.70);
     padding: 1rem;
-    width: 10rem;
+    width: 14rem;
     min-height: 8rem;
     position: relative;
     text-align: center;
@@ -40,7 +41,7 @@ export const InfoCard: React.FC<Props> = ({ info, infoType, title }) => {
             }
             {
                 infoType === 'degree' && (
-                    <StyledInfoCardFont>{ info }&deg;</StyledInfoCardFont>
+                    <StyledInfoCardFont>{ info }&deg;C</StyledInfoCardFont>
                 )
             }
             {
@@ -49,11 +50,7 @@ export const InfoCard: React.FC<Props> = ({ info, infoType, title }) => {
                 )
             }
             <StyledInfoCardTitle>
-                <StyledBody>{ 
-                    title.toLowerCase()
-                        .split(' ')
-                        .map(word => word.charAt(0).toUpperCase() + word.substring(1))
-                        .join(' ') }
+                <StyledBody>{ uppercaseWordsInString(title) }
                 </StyledBody>
             </StyledInfoCardTitle>
         </StyledInfoContainer>
