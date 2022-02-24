@@ -5,7 +5,8 @@ import { WeatherCard } from './weatherCard/WeatherCard';
 
 interface LocationState {
     lat: number,
-    long: number
+    long: number,
+    placeName?: string
 }
 
 export const WeatherPage:React.FC = () => {
