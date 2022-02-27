@@ -43,15 +43,20 @@ interface HourlyCardProps {
     hour: any
 }
 const CardContainer = styled.div`
-    padding: 1rem 2rem;
+    padding: 1rem 4rem;
     margin-right: 1rem;
     background: rgba(141, 153, 174, 0.5);
     margin-bottom: 0.5rem;
+    width: 100%;
+    text-align: center;
 `;
 const CardTitle = styled.h6`
     font-size: 0.85rem;
     font-weight: 300;
     color: #555;
+`;
+const CardData = styled.p`
+    font-size: 1.1rem;
 `;
 
 const HourlyCard:React.FC<HourlyCardProps> = ({ hour }) => {
@@ -64,13 +69,13 @@ const HourlyCard:React.FC<HourlyCardProps> = ({ hour }) => {
         <CardContainer>
             <p style={{'textAlign':'center', 'textDecoration':'underline', 'fontSize':'1.25rem'}}><b>{ formatTime(hour.dt) }</b></p>
             <img src={ `https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png` } alt={ hour.weather[0].description } loading='lazy' />
-            <p style={{'fontWeight':'bold', 'textAlign':'center'}}>{ uppercaseWordsInString(hour.weather[0].description) }</p>
+            <p style={{'fontWeight':'bold', 'textAlign':'center', 'fontSize':'1.4rem'}}>{ uppercaseWordsInString(hour.weather[0].description) }</p>
             <CardTitle>Temperature</CardTitle>
-            <p>{ hour.temp }&deg;C</p>
+            <CardData>{ hour.temp }&deg;C</CardData>
             <CardTitle>Feels Like</CardTitle>
-            <p>{ hour.feels_like }&deg;C</p>
+            <CardData>{ hour.feels_like }&deg;C</CardData>
             <CardTitle>Humidity</CardTitle>
-            <p>{ hour.humidity }%</p>
+            <CardData>{ hour.humidity }%</CardData>
         </CardContainer>
     )
 };

@@ -1,18 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import { BGImage } from '../shared/BGImage';
 import { Search } from './Search';
-import BGImage from '../../assets/pexels-sunny-cropped.jpg';
 
-const StyledImg = styled.img`
-    width: 100%;
-    height: 50vh;
-    object-fit: cover;
-`;
 
 export const HomePage: React.FC = () => {
     return(
         <div>
-            <StyledImg src={ BGImage } />
+            <BGImage imgSrc={ process.env.PUBLIC_URL + '/assets/pexels-sunny-cropped.jpg' } />
             <Search />
         </div>
     );

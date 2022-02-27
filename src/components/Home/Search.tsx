@@ -48,12 +48,18 @@ const SuggestionsContainer = styled.div`
     background: #f0f0f0;
     width: 100%;
     top: 100%;
-    transform: translateY(-10%);
+    transform: translateY(-5%);
 `;
 const Suggestion = styled.p`
-        font-size: 1.25rem;
-        padding: 0.5rem;
-        border-bottom: 1px solid #ccc;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+
+    &:hover {
+        cursor: pointer;
+        background: #fff;
+    }
+
 `;
 
 

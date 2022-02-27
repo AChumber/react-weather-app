@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Location } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import backgroundImageSelector from '../../helpers/backgroundImageSelector';
+import { BGImage } from '../shared/BGImage';
 import { WeatherCard } from './weatherCard/WeatherCard';
 
 interface LocationState {
@@ -10,7 +12,7 @@ interface LocationState {
 }
 
 export const WeatherPage:React.FC = () => {
-    const [weatherData, setWeatherData] = useState<object | null>({});
+    const [weatherData, setWeatherData] = useState<any>({});
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const location:Location = useLocation();
     const myState:LocationState = location.state as LocationState;
@@ -42,7 +44,13 @@ export const WeatherPage:React.FC = () => {
                 isLoading ?
                     <h1>Loading...</h1> :
                     (!weatherData) ? <h1>Could not retrive weather data</h1> :
-                        <WeatherCard weatherData={ weatherData } />
+                        (
+                            <>
+                                { console.log(weatherData.current.weather[0].main) }
+                                <BGImage large imgSrc={ backgroundImageSelector(weatherData.current.weather[0].main) } />
+                                <WeatherCard weatherData={ weatherData } placeName={ myState.placeName } />
+                            </>
+                        )
             }
         </div>
     );

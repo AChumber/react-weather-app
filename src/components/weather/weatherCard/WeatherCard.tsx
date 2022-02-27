@@ -6,8 +6,9 @@ import { Forecast } from './forecastTable/Forecast';
 import { WeatherAlert } from './WeatherAlert';
 
 interface Props {
-    weatherData: any
-}
+    weatherData: any,
+    placeName?: string
+};
 
 const StyledContainer = styled.div`
     width: clamp(80%, 80%, 85%);
@@ -19,11 +20,14 @@ const StyledContainer = styled.div`
     transform: translate(-50%, -25%);
     padding: 1rem;
 `;
+const StyledSpanTitle = styled.span`
+    color: #111;
+`;
 
-export const WeatherCard: React.FC<Props> = ({weatherData}) => {
+export const WeatherCard: React.FC<Props> = ({weatherData, placeName}) => {
     return(
         <StyledContainer>
-            <StyledH1>Weather - <span>Your Location</span></StyledH1>
+            <StyledH1>Weather - <StyledSpanTitle>{ placeName ? placeName : 'Your Location' }</StyledSpanTitle></StyledH1>
             <CurrentWeather currentWeather={ weatherData.current } />
             {
                 weatherData.hasOwnProperty('alerts') && <WeatherAlert alerts={ weatherData.alerts } />
