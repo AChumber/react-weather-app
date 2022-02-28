@@ -5,6 +5,7 @@ import { debounce } from 'lodash';
 import { CurrentLocation } from './CurrentLocation';
 
 import { FiSearch } from 'react-icons/fi';
+import { SavedLocations } from './SavedLocations';
 
 const StyledDiv = styled.div`
     width: clamp(80%, 80%, 75%);
@@ -125,7 +126,9 @@ export const Search: React.FC = () => {
                     </SuggestionsContainer>
 
                 </InputWrapper>
+                
                 <CurrentLocation />
+                <SavedLocations />
         </StyledDiv>
     );
 };
