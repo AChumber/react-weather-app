@@ -20,7 +20,7 @@ export const locationSlice = createSlice({
     initialState,
     reducers: {
         addLocation: (state, action: PayloadAction<stateObjectInterface>) => {
-            if(action.payload) {
+            if(!state.savedLocations.some(location => location.name === action.payload.name)) {
                 state.savedLocations?.push(action.payload);
             }
         },

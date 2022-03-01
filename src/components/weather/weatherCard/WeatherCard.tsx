@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useAppDispatch } from '../../../redux/hooks';
+import { addLocation } from '../../../redux/slices/locationSlice';
+import { PrimaryButton } from '../../shared/Buttons';
 import { StyledH1 } from '../../shared/FontStyles';
 import CurrentWeather from './CurrentWeather';
 import { Forecast } from './forecastTable/Forecast';
@@ -20,14 +23,30 @@ const StyledContainer = styled.div`
     transform: translate(-50%, -25%);
     padding: 1rem;
 `;
+const StyledTitleContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+`;
 const StyledSpanTitle = styled.span`
     color: #111;
 `;
 
 export const WeatherCard: React.FC<Props> = ({weatherData, placeName}) => {
+    const dispatch = useAppDispatch();
+
+    const onSaveLocationClick = ():void => {
+        dispatch(addLocation({name: placeName || 'My Location', long: weatherData.lon, lat: weatherData.lat}));
+    }
+
     return(
         <StyledContainer>
-            <StyledH1>Weather - <StyledSpanTitle>{ placeName ? placeName : 'Your Location' }</StyledSpanTitle></StyledH1>
+            <StyledTitleContainer>
+                <StyledH1>Weather - <StyledSpanTitle>{ placeName ? placeName : 'Your Location' }</StyledSpanTitle></StyledH1>
+                <PrimaryButton
+                    onClick={ onSaveLocationClick }
+                    >+ Save Location</PrimaryButton>
+            </StyledTitleContainer>
             <CurrentWeather currentWeather={ weatherData.current } />
             {
                 weatherData.hasOwnProperty('alerts') && <WeatherAlert alerts={ weatherData.alerts } />
