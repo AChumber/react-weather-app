@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useAppDispatch } from '../../../redux/hooks';
-import { addLocation } from '../../../redux/slices/locationSlice';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { addLocation, removeLocation } from '../../../redux/slices/locationSlice';
 import { PrimaryButton } from '../../shared/Buttons';
 import { StyledH1 } from '../../shared/FontStyles';
 import CurrentWeather from './CurrentWeather';
@@ -10,7 +12,7 @@ import { WeatherAlert } from './WeatherAlert';
 
 interface Props {
     weatherData: any,
-    placeName?: string
+    placeName: string
 };
 
 const StyledContainer = styled.div`
@@ -33,10 +35,41 @@ const StyledSpanTitle = styled.span`
 `;
 
 export const WeatherCard: React.FC<Props> = ({weatherData, placeName}) => {
+    const [isLocationInSavedLocation, setIsLocationInSavedLocation] = useState<boolean>(false);
+    const savedLocations = useAppSelector(state => state.location.savedLocations);
     const dispatch = useAppDispatch();
 
+    useEffect(() => {
+        //Check redux state returning if place exists in saved locations array
+        setIsLocationInSavedLocation(savedLocations.some(savedLocation => savedLocation.name === placeName));
+    }, [placeName]);
+
     const onSaveLocationClick = ():void => {
-        dispatch(addLocation({name: placeName || 'My Location', long: weatherData.lon, lat: weatherData.lat}));
+        dispatch(addLocation({name: placeName, long: weatherData.lon, lat: weatherData.lat}));
+        //render toast to ToastContainer set up in App.tsx
+        toast('Location saved', {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        setIsLocationInSavedLocation(true);
+    }
+    const onRemoveLocationClick = ():void => {
+        dispatch(removeLocation(placeName));
+        toast('Removed Location from saved list', {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        setIsLocationInSavedLocation(false);
     }
 
     return(
@@ -44,8 +77,9 @@ export const WeatherCard: React.FC<Props> = ({weatherData, placeName}) => {
             <StyledTitleContainer>
                 <StyledH1>Weather - <StyledSpanTitle>{ placeName ? placeName : 'Your Location' }</StyledSpanTitle></StyledH1>
                 <PrimaryButton
-                    onClick={ onSaveLocationClick }
-                    >+ Save Location</PrimaryButton>
+                    onClick={ isLocationInSavedLocation ? onRemoveLocationClick : onSaveLocationClick }>
+                        { isLocationInSavedLocation ? '- Remove Location' : '+ Save Location' }
+                </PrimaryButton>
             </StyledTitleContainer>
             <CurrentWeather currentWeather={ weatherData.current } />
             {

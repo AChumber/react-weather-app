@@ -21,11 +21,12 @@ export const locationSlice = createSlice({
     reducers: {
         addLocation: (state, action: PayloadAction<stateObjectInterface>) => {
             if(!state.savedLocations.some(location => location.name === action.payload.name)) {
-                state.savedLocations?.push(action.payload);
+                state.savedLocations.push(action.payload);
             }
         },
         removeLocation: (state, action: PayloadAction<string>) => {
             if(state.savedLocations){
+                console.log(action.payload);
                 let newLocationState = state.savedLocations.filter(item => item.name !== action.payload);
                 return {
                     ...state,

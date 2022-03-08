@@ -4,6 +4,7 @@ import { HomePage } from './components/home';
 import { WeatherPage } from './components/weather';
 import { store } from './redux/Store';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
               </Route>
 
           </Routes>
+          {/* For react-toastify to render a toast */}
+          <ToastContainer />
         </div>
       </Provider>
     </BrowserRouter>

@@ -8,7 +8,7 @@ import { WeatherCard } from './weatherCard/WeatherCard';
 interface LocationState {
     lat: number,
     long: number,
-    placeName?: string
+    placeName: string
 }
 
 export const WeatherPage:React.FC = () => {
@@ -48,7 +48,9 @@ export const WeatherPage:React.FC = () => {
                             <>
                                 { console.log(weatherData.current.weather[0].main) }
                                 <BGImage large imgSrc={ backgroundImageSelector(weatherData.current.weather[0].main) } />
-                                <WeatherCard weatherData={ weatherData } placeName={ myState.placeName } />
+                                <WeatherCard 
+                                    weatherData={ weatherData } 
+                                    placeName={ myState.placeName ? myState.placeName : 'My Location' } />
                             </>
                         )
             }

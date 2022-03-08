@@ -49,6 +49,7 @@ const SuggestionsContainer = styled.div`
     width: 100%;
     top: 100%;
     transform: translateY(-5%);
+    z-index: 100;
 `;
 const Suggestion = styled.p`
     font-size: 1.25rem;

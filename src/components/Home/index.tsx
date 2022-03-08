@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BGImage } from '../shared/BGImage';
-import { SavedLocations } from './SavedLocations';
+import { SavedLocations } from './savedLocations/SavedLocations';
 import { Search } from './Search';
 
 const SavedLocationsContainer = styled.div`
@@ -9,7 +9,7 @@ const SavedLocationsContainer = styled.div`
     top: 68%;
     left: 10%;
     width: 80%;
-    outline: 1px solid red;
+    z-index: 1;
 `;
 
 export const HomePage: React.FC = () => {
