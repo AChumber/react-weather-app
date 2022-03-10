@@ -20,7 +20,15 @@ const StyledTR = styled.tr`
     width: 100%;
     overflow-x: scroll;
 `;
-const StyledTH = styled.th<Pick<Props, 'isActive' | 'isDataAvailable'>>`
+const ForecastHeadingContainer = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: auto;
+    margin-top: 1rem;
+`;
+const ForeCastHeading = styled.th<Pick<Props, 'isActive' | 'isDataAvailable'>>`
     background: ${ props => props.isActive ? 'rgba(141, 153, 174, 0.5)' : 
                     !props.isDataAvailable ? 'rgba(0,0,0,0.1)' :'#EDF2F4' };
     ${ props => !props.isDataAvailable && 'color: grey;'}
@@ -60,25 +68,23 @@ export const Forecast: React.FC<Props> = ({ daily, hourly }) => {
     }
 
     return (
-        <StyledTable>
-            <thead>
-                <StyledTR>
-                    <StyledTH 
-                        isActive={forecastHeadingTab === 0}
-                        isDataAvailable 
-                        onClick={() => onTabHeadingClick(0) }>Today</StyledTH>
-                    {
-                        daily.slice(1).map((day: { dt: number }, index: number) => (
-                            <StyledTH 
-                                key={index} 
-                                isActive={forecastHeadingTab === index+1}
-                                isDataAvailable={!(index+1>2)}
-                                onClick={() => onTabHeadingClick(index+1)}>{ formatHeading(day.dt) }</StyledTH>
-                        ))
-                    }
-                </StyledTR>
-            </thead>
+        <> 
+            <ForecastHeadingContainer>
+                <ForeCastHeading
+                    isActive={forecastHeadingTab === 0}
+                    isDataAvailable 
+                    onClick={() => onTabHeadingClick(0) }>Today</ForeCastHeading>
+                {
+                    daily.slice(1).map((day: { dt: number }, index: number) => (
+                        <ForeCastHeading 
+                            key={index} 
+                            isActive={forecastHeadingTab === index+1}
+                            isDataAvailable={!(index+1>2)}
+                            onClick={() => onTabHeadingClick(index+1)}>{ formatHeading(day.dt) }</ForeCastHeading>
+                    ))
+                }
+            </ForecastHeadingContainer>
             <ForecastHourly hourly={ hourlyData } />
-        </StyledTable>
+        </>
     )
 }

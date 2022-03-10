@@ -11,7 +11,7 @@ interface Props {
 }
 
 const StyledInfoContainer = styled.div`
-    background: rgba(237, 242, 244, 0.70);
+    background: rgba(43, 45, 66, 0.2);
     padding: 1rem;
     width: 14rem;
     min-height: 8rem;

@@ -9,28 +9,30 @@ const StyledTitle = styled.h2`
     color: #7E7E7E;
 `;
 const LocationTileContainer = styled.div`
-    display: flex;
-    justify-content: spave-evenly;
-    align-items: center;
-    gap: 0.15rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.2rem;
 `;
 
 export const SavedLocations:React.FC = () => {
     const savedLocations = useAppSelector(state => state.location.savedLocations);
 
-    return (
-        <div>
-            <StyledTitle>Saved Locations</StyledTitle>
-            <LocationTileContainer>
-                {
-                    savedLocations.length <= 0 ? <p>No saved locations</p> : 
+    if(savedLocations.length > 0) {
+        return (
+            <div>
+                <StyledTitle>Saved Locations</StyledTitle>
+                <LocationTileContainer>
+                    {
                         savedLocations.map(location => <LocationTile 
                                                             key={uniqueId()} 
                                                             geo={{ lat: location.lat, long: location.long }} 
                                                             locationName={location.name} />
                                                         )
-                }
-            </LocationTileContainer>
-        </div>
-    )
+                    }
+                </LocationTileContainer>
+            </div>
+        )
+    }
+
+    return(null);
 }

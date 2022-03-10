@@ -9,7 +9,7 @@ interface Props {
 const StyledPrimaryBtn = styled.button`
     font-size: 1.15rem;
     border-radius: 5px;
-    padding: 1rem;
+    padding: 0rem 1rem;
     border: none;
     background: #2B2D42;
     color: white;

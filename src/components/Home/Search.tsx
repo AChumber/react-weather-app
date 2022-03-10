@@ -105,7 +105,10 @@ export const Search: React.FC = () => {
         <StyledDiv>
                 <StyledH2>Search for a Location</StyledH2>
                 <InputWrapper>
-                    <StyledInput type='text' onChange={ (e) => handleInputChange(e) } value={ search } />
+                    <StyledInput 
+                        type='text' 
+                        onChange={ (e) => handleInputChange(e) } value={ search }
+                        data-testid="location-search" />
                     {
                         !search && (
                             <StyledIcon>

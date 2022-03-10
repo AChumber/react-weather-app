@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useAppDispatch } from '../../../redux/hooks';
 import styled from 'styled-components';
 import { uppercaseWordsInString } from '../../../helpers/StringConversion';
-import { TertiaryButton } from '../../shared/Buttons';
 import { removeLocation } from '../../../redux/slices/locationSlice';
 
 
@@ -16,7 +15,6 @@ interface LocationTileProps {
 const LocationContainer = styled.div`
     border: 1px dashed rgba(43, 45, 66, 0.3);
     background: rgba(0, 0, 0, 0.15);
-    width: 25%;
     min-height: 9rem;
     text-align: center;
 `;

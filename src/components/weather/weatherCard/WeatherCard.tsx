@@ -16,13 +16,13 @@ interface Props {
 };
 
 const StyledContainer = styled.div`
-    width: clamp(80%, 80%, 85%);
+    width: clamp(70%, 75%, 85%);
     background: linear-gradient(91.53deg, #EDF2F4 1.86%, rgba(141, 153, 174, 0.75) 112.53%);
     border-radius: 5px;
     position: absolute;
     left: 50%;
-    top: 25%;
-    transform: translate(-50%, -25%);
+    top: 50%;
+    transform: translate(-50%, -50%);
     padding: 1rem;
 `;
 const StyledTitleContainer = styled.div`

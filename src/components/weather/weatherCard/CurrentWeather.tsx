@@ -17,15 +17,15 @@ const CurrentWeatherCardsContainer = styled.div`
     width: 100%;
     justify-content: space-between;
 
-    @media only screen and (max-width: 930px) {
+    @media only screen and (max-width: 1100px) {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem;
     }
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: 970px) {
         grid-template-columns: repeat(2, 1fr);
     }
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 690px) {
         grid-template-columns: repeat(1, 1fr);
     }
 `;
