@@ -82,7 +82,6 @@ export const Search: React.FC = () => {
                     })
                     .then(data => {
                         setSuggestions(data);
-                        console.log(data);
                     })
                     .catch(err => console.log(err));
             }
@@ -122,6 +121,7 @@ export const Search: React.FC = () => {
                             suggestions && (
                                 suggestions.map((place:any, i:number) =>
                                         <Suggestion 
+                                            data-testid="suggestion"
                                             key={i} onClick={() => handleSuggestionClick(place.lat, place.lon, place.name)}>
                                                 {place.name}, {place.state} {place.country}</Suggestion>)
                             )

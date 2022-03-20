@@ -11,15 +11,6 @@ interface Props {
 
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-const StyledTable = styled.table`
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 25rem;
-`;
-const StyledTR = styled.tr`
-    width: 100%;
-    overflow-x: scroll;
-`;
 const ForecastHeadingContainer = styled.div`
     width: 100%;
     display: flex;
@@ -28,12 +19,15 @@ const ForecastHeadingContainer = styled.div`
     overflow-x: auto;
     margin-top: 1rem;
 `;
-const ForeCastHeading = styled.th<Pick<Props, 'isActive' | 'isDataAvailable'>>`
+const ForeCastHeading = styled.p<Pick<Props, 'isActive' | 'isDataAvailable'>>`
     background: ${ props => props.isActive ? 'rgba(141, 153, 174, 0.5)' : 
                     !props.isDataAvailable ? 'rgba(0,0,0,0.1)' :'#EDF2F4' };
     ${ props => !props.isDataAvailable && 'color: grey;'}
     ${ props => props.isDataAvailable && 'cursor:pointer;' }
     padding: 0.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-right: 0.2rem;
 `;
 
 export const Forecast: React.FC<Props> = ({ daily, hourly }) => {
