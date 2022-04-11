@@ -17,6 +17,7 @@ const LocationContainer = styled.div`
     background: rgba(0, 0, 0, 0.15);
     min-height: 9rem;
     text-align: center;
+    width: 16rem;
 `;
 const LocationRemoveBtn = styled.button`
     margin-top: 0.5rem;

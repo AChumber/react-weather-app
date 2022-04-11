@@ -25,9 +25,11 @@ export const CurrentLocation: React.FC = () => {
         }
     }
 
-    return (
-        <SecondaryButton onClick={ handleCurrentLocationClick }>
-            <BiCurrentLocation />{ isGeolocation ? 'Use My Current Location' : 'Current Location Unavailable'}
-        </SecondaryButton>
-    );
+    return isGeolocation  
+        ? (
+            <SecondaryButton onClick={ handleCurrentLocationClick }>
+                <BiCurrentLocation />{ isGeolocation ? 'Use My Current Location' : 'Current Location Unavailable'}
+            </SecondaryButton>
+        )
+        : null;
 }

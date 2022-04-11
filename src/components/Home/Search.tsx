@@ -49,7 +49,7 @@ const SuggestionsContainer = styled.div`
     width: 100%;
     top: 100%;
     transform: translateY(-5%);
-    z-index: 100;
+    z-index: 1;
 `;
 const Suggestion = styled.p`
     font-size: 1.25rem;
@@ -72,7 +72,6 @@ export const Search: React.FC = () => {
     //Suggestions whilst typing
     const debounceSuggestions = useCallback(debounce(async (searchTerm:string) => {
             if(searchTerm !== '') {
-                console.log(searchTerm);
                 await fetch(`${process.env.REACT_APP_API_BASE_URL}/geo/1.0/direct?q=${searchTerm}&limit=5&appid=${process.env.REACT_APP_API_KEY}`)
                     .then(res => {
                         if(!res.ok) {

@@ -46,7 +46,6 @@ export const WeatherPage:React.FC = () => {
                     (!weatherData) ? <h1>Could not retrive weather data</h1> :
                         (
                             <>
-                                { console.log(weatherData.current.weather[0].main) }
                                 <BGImage large imgSrc={ backgroundImageSelector(weatherData.current.weather[0].main) } />
                                 <WeatherCard 
                                     weatherData={ weatherData } 

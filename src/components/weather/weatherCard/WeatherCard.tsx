@@ -85,7 +85,6 @@ export const WeatherCard: React.FC<Props> = ({weatherData, placeName}) => {
             {
                 weatherData.hasOwnProperty('alerts') && <WeatherAlert alerts={ weatherData.alerts } />
             }
-            { console.log(weatherData) }
             <Forecast daily={ weatherData.daily } hourly={ weatherData.hourly } />
         </StyledContainer>
     );
